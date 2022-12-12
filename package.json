@@ -1,0 +1,30 @@
+{
+  "name": "stonecastle_manager_systems",
+  "version": "1.0.0",
+  "description": "mysql, inquirer, command line applocation",
+  "main": "server.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EM-T-Shells/stonecastle_manager_systems.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EM-T-Shells/stonecastle_manager_systems/issues"
+  },
+  "homepage": "https://github.com/EM-T-Shells/stonecastle_manager_systems#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "inquirer": "^8.2.4",
+    "mysql2": "^2.3.3",
+    "node": "^18.0.0"
+  }
+}
