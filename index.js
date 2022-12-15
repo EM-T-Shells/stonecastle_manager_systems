@@ -129,6 +129,37 @@ function viewByDepartment() {
   });
 }
 
+//function to add department to db
+function addDepartment() {
+  let query = "SELECT * FROM departments;";
+  connection.query(query, function (err, res) {
+    if (err) throw err;
+    console.table(res);
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          message: "What is the name of the department you want to add?",
+          name: "newdepartment",
+        },
+      ])
+      .then(function (response) {
+        console.log("Adding New Department...\n");
+        connection.query(
+          "INSERT INTO departments SET ?",
+          {
+            department_name: response.newdepartment,
+          },
+          function (err, res) {
+            if (err) throw err;
+            console.log(res.affectedRows + " Department Created Succesfully\n");
+            promptUser();
+          }
+        );
+      });
+  });
+}
+
 //function to add roles to db
 function addRole(){
   let departmentArr = [];
@@ -136,9 +167,9 @@ function addRole(){
   connection.query(departmentQuery, function (err, res){
       if (err) throw err;
       for (i = 0; i < res.length; i++){
-          departmentArr.push(res[i].department)
+          departmentArr.push(res[i].department_name)
       }
-  let query = "SELECT roles.title, departments.id";
+  let query = "SELECT roles.title";
   query += " FROM roles INNER JOIN departments ON (roles.department_id = departments.id);";
   connection.query(query, function (err, res){
       if (err) throw err;
@@ -153,14 +184,14 @@ function addRole(){
               type: 'list',
               message: 'What department does this role belong to?',
               choices: departmentArr,
-              name: "roleDepartment"
+              name: "newdepartment"
           }
       ]).then(function(response){
-          let addDepartment = response.roleDepartment;
+          let addDepartment = response.newdepartment;
           let addDepartmentId = departmentArr.indexOf(addDepartment);
           addDepartmentId++;
           console.log("Adding New Role...\n");
-          connection.query("INSERT INTO role SET ?",
+          connection.query("INSERT INTO roles SET ?",
           {
               title: response.newrole,
               department_id: addDepartmentId
@@ -224,37 +255,6 @@ function addEmployee() {
           function (err, res) {
             if (err) throw err;
             console.log(res.affectedRows + " Employee Created Succesfully\n");
-            promptUser();
-          }
-        );
-      });
-  });
-}
-
-//function to add department to db
-function addDepartment() {
-  let query = "SELECT * FROM departments;";
-  connection.query(query, function (err, res) {
-    if (err) throw err;
-    console.table(res);
-    inquirer
-      .prompt([
-        {
-          type: "input",
-          message: "What is the name of the department you want to add?",
-          name: "roleDepartment",
-        },
-      ])
-      .then(function (response) {
-        console.log("Adding New Department...\n");
-        connection.query(
-          "INSERT INTO departments SET ?",
-          {
-            department_name: response.roleDepartment,
-          },
-          function (err, res) {
-            if (err) throw err;
-            console.log(res.affectedRows + " Department Created Succesfully\n");
             promptUser();
           }
         );
