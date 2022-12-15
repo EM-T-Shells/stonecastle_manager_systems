@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS lafamilia_db;
-CREATE DATABASE lafamilia_db;
+DROP DATABASE IF EXISTS laFamiglia_db;
+CREATE DATABASE laFamiglia_db;
 
-USE lafamilia_db;
+USE laFamiglia_db;
 
 CREATE TABLE departments (
     id INT NOT NULL AUTO_INCREMENT,
@@ -19,7 +19,7 @@ CREATE TABLE roles (
     ON DELETE SET NULL
 );
 
-CREATE TABLE employees (
+CREATE TABLE employee (
     first_name VARCHAR(30) not null,
     last_name VARCHAR(30) not null,
     id INT NOT NULL AUTO_INCREMENT,
