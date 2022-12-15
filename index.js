@@ -3,6 +3,7 @@ const mysql = require("mysql");
 const inquirer = require("inquirer");
 const cTable = require("console.table");
 const CFonts = require("cfonts");
+const { render } = require("cfonts");
 
 //Local Connection to MySQL for database
 var connection = mysql.createConnection({
@@ -16,15 +17,15 @@ var connection = mysql.createConnection({
 //When connected use cfonts as a header and then go to the main function to prompt users
 connection.connect(function (err) {
   if (err) throw err;
-  CFonts.say("emt_shells", {
-    font: "3d",
-    align: "left",
+  CFonts.say("Welcome|to the|Family", {
+    font: "block",
+    align: "center",
     colors: ["red", "cyan"],
     background: "transparent",
     letterSpacing: 1,
     lineHeight: 1,
     space: true,
-    maxLength: "0",
+    maxLength: "10",
     gradient: false,
     independentGradient: false,
     transitionGradient: false,
