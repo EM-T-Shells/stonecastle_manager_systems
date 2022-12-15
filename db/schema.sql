@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS laFamiglia_db;
-CREATE DATABASE laFamiglia_db;
+DROP DATABASE IF EXISTS lafamiglia_db;
+CREATE DATABASE lafamiglia_db;
 
-USE laFamiglia_db;
+USE lafamiglia_db;
 
 CREATE TABLE departments (
     id INT NOT NULL AUTO_INCREMENT,

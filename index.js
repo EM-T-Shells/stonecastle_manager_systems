@@ -10,7 +10,7 @@ var connection = mysql.createConnection({
   port: 3306,
   user: "root",
   password: "U8e*&0^C5%#U2cCU",
-  database: "laFamiglia_db",
+  database: "lafamiglia_db",
 });
 
 //When connected use cfonts as a header and then go to the main function to prompt users
@@ -56,16 +56,16 @@ function promptUser() {
     ])
     .then(function (response) {
       switch (response.userchoice) {
-        case "View All Employees":
-          viewAll();
+        case "View All Departments":
+          viewByDepartment();
           break;
 
         case "View All Roles":
           viewRoles();
           break;
 
-        case "View All Departments":
-          viewByDepartment();
+        case "View All Employees":
+          viewAll();
           break;
 
         case "Add Role":
@@ -111,7 +111,7 @@ function viewAll() {
 
 //function to view all roles
 function viewRoles() {
-  let query = "SELECT roles.title, employee.salary FROM roles;";
+  let query = "SELECT roles.title FROM roles;";
   connection.query(query, function (err, res) {
     if (err) throw err;
     console.table(res);
@@ -130,61 +130,50 @@ function viewByDepartment() {
 }
 
 //function to add roles to db
-function addRole() {
+function addRole(){
   let departmentArr = [];
   let departmentQuery = "SELECT * FROM departments;";
-  connection.query(departmentQuery, function (err, res) {
-    if (err) throw err;
-    for (i = 0; i < res.length; i++) {
-      departmentArr.push(res[i].department);
-    }
-    let query = "SELECT roles.title employee.salary, departments.id";
-    query +=
-      " FROM roles INNER JOIN departments ON (roles.department_id = departments.id);";
-    connection.query(query, function (err, res) {
+  connection.query(departmentQuery, function (err, res){
+      if (err) throw err;
+      for (i = 0; i < res.length; i++){
+          departmentArr.push(res[i].department_name)
+      }
+  let query = "SELECT roles.title, departments.department_name";
+  query += " FROM role INNER JOIN departments ON (role.department_id = departments.id);";
+  connection.query(query, function (err, res){
       if (err) throw err;
       console.table(res);
-      inquirer
-        .prompt([
+      inquirer.prompt([
           {
-            type: "input",
-            message: "What is the name of the roles you want to add?",
-            name: "newrole",
+              type: 'input',
+              message: 'What is the name of the role you want to add?',
+              name: "newrole"
           },
           {
-            type: "input",
-            message: "How much does this roles earn per year?",
-            name: "newsalary",
-          },
-          {
-            type: "list",
-            message: "What department does this roles belong to?",
-            choices: departmentArr,
-            name: "newdepartment",
-          },
-        ])
-        .then(function (response) {
+              type: 'list',
+              message: 'What department does this role belong to?',
+              choices: departmentArr,
+              name: "newdepartment"
+          }
+      ]).then(function(response){
           let addDepartment = response.newdepartment;
           let addDepartmentId = departmentArr.indexOf(addDepartment);
           addDepartmentId++;
           console.log("Adding New Role...\n");
-          connection.query(
-            "INSERT INTO roles SET ?",
-            {
+          connection.query("INSERT INTO role SET ?",
+          {
               title: response.newrole,
-              salary: response.newsalary,
-              department_id: addDepartmentId,
-            },
-            function (err, res) {
+              department_id: addDepartmentId
+          },
+          function (err, res){
               if (err) throw err;
               console.log(res.affectedRows + " Role Created Succesfully\n");
               promptUser();
-            }
-          );
-        });
-    });
-  });
-}
+          });
+      })
+  })
+  })
+};
 
 //function to add employees to db
 function addEmployee() {
@@ -208,6 +197,11 @@ function addEmployee() {
           name: "lastname",
         },
         {
+          type: "input",
+          message: "What is your employees salary?",
+          name: "salary",
+        },
+        {
           type: "list",
           message: "Choose your employees roles",
           name: "roles",
@@ -224,6 +218,7 @@ function addEmployee() {
           {
             first_name: response.firstname,
             last_name: response.lastname,
+            salary: response.salary,
             role_id: addEmployeeRoleId,
           },
           function (err, res) {
@@ -255,7 +250,7 @@ function addDepartment() {
         connection.query(
           "INSERT INTO departments SET ?",
           {
-            department: response.newdepartment,
+            department_name: response.newdepartment,
           },
           function (err, res) {
             if (err) throw err;
