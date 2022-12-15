@@ -1,10 +1,12 @@
 INSERT INTO departments (department_name)
 VALUES ("Corleonesi Cosa Nostra"),
-       ("Bribed Officials");
+       ("Bribed Officials"),
+       ("Financial"),
+       ("Legal");
 
 INSERT INTO roles (title, department_id)
 VALUES("Capomandamento", 1),
-      ("Concierge", 1),
+      ("Concierge", 4),
       ("Underboss", 1),
       ("Caporegime", 1),
       ("Soldier", 1),
