@@ -1,4 +1,4 @@
-# stonecastle_manager_systems
+# emT-shells_manager_systems
 
 ## Description
 Command line application using mysql and inquirer to  Help employers to manage their businesses with employee maangement. Functionality includes yet not limiting to, view departments/roles/employees, add... remove... update...
@@ -33,3 +33,7 @@ Back End:
 
 ### Curators: G.E. Taskale
 ### [<a href="https://github.com/EM-T-Shells"><img alt="EM-T-Shells" src="assets/images/Octocat.png" width=150x/></a>]()
+
+![]()
+
+[![Blood fonts](https://see.fontimg.com/api/renderfont4/jEwv/eyJyIjoiZnMiLCJoIjoxNTAsInciOjIwMDAsImZzIjo3NSwiZmdjIjoiIzBEODQ3NCIsImJnYyI6IiM1MDIyNjgifQ/bWVkaWNpX0tvZA/basketcase-roman.png)](https://www.fontspace.com/category/blood)
