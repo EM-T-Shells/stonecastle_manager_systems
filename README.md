@@ -20,13 +20,8 @@ run the application by typing in the command line:
 $ node index.js
 ```
 
-### Screenshots
-[Here](http://bit.ly/35VcRfM) is a video walkthrough of the project.
-
-![mainpage1](https://github.com/ogmedina/Employee-Manager/blob/main/Images/mainpage1.jpg)
-
-![mainpage2](https://github.com/ogmedina/Employee-Manager/blob/main/Images/mainpage2.gif)
-
+### Tutorial
+* [Video Link](https://drive.google.com/file/d/1_rm_ca-5FdYdFygTkSgkHr3U2IZdr62o/view?usp=share_link)
 
 ### Technologies Used:
 Back End:
@@ -34,15 +29,7 @@ Back End:
 * [Inquirer Package](https://www.npmjs.com/package/inquirer)
 * [MySQL](https://www.mysql.com/)
 
-
-### Resources:
-
-
-
-### Curators: G.E. Taskale
-### [<a href="https://github.com/EM-T-Shells"><img src="hw/stonecastle_manager_systems/assets/Octocat.png" width=150x/></a>]()
-
-
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-
+### Curators: G.E. Taskale
+### [<a href="https://github.com/EM-T-Shells"><img alt="EM-T-Shells" src="assets/images/Octocat.png" width=150x/></a>]()
